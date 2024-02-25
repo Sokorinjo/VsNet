@@ -1,0 +1,31 @@
+{
+  "name": "vs-net",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "VS-NET app, post and chat with your friends",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon backend/server.js",
+    "mock-server": "nodemon mock-backend/server.js",
+    "client": "npm run dev -prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "del-p": "node backend/models/postModel.js -dp"
+  },
+  "author": "Vladimir Sokorac RT-2/20",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "nodemon": "^3.0.1"
+  }
+}

@@ -5,6 +5,7 @@ const router = express.Router()
 
 router
   .get('/',protect, postController.getAllPosts)
+  .get('/user-posts', protect, postController.getPostsForUser)
   .post('/',protect, postController.addNewPost)
   .patch('/',protect, postController.updatePost)
   .delete('/',protect, postController.deletePost)

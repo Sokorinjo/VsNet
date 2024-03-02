@@ -10,7 +10,6 @@ import { router as commentRouter } from "./routes/commentRotes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 import cookieParser from "cookie-parser";
 
-console.log('check push')
 //Connect to DB
 connectDB();
 

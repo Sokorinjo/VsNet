@@ -27,6 +27,32 @@ const addPostComment = asyncHandler(async (req, res) => {
   res.send({ message: `Comment added to post: ${postId}`, postComment });
 });
 
+
+//@desc Delete comment
+//@route DELETE /api/comments/:commentId
+//@access Private
+const deletePostComment = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+  const { postId, commentText: text } = req.body;
+  const postComment = await Comment.create({ userId, postId, text });
+
+  res.send({ message: `Comment added to post: ${postId}`, postComment });
+});
+
+//@desc Edit comment
+//@route PATCH /api/comments/:id
+//@access Private
+const editPostComment = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+  const { postId, commentText: text } = req.body;
+  const postComment = await Comment.create({ userId, postId, text });
+
+  res.send({ message: `Comment added to post: ${postId}`, postComment });
+});
+
+
+
+
 export const commentController = {
   getAllPostComments,
   addPostComment,

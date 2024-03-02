@@ -1,6 +1,11 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { ThumbUpOutlined, ThumbUpAltOutlined } from "@mui/icons-material";
+import {
+  ThumbUpOutlined,
+  ThumbUpAltOutlined,
+  Edit,
+  Delete,
+} from "@mui/icons-material";
 import {
   Card,
   CardActions,
@@ -13,13 +18,17 @@ import {
   Avatar,
 } from "@mui/material";
 import { ChatBubbleOutline, ExpandOutlined } from "@mui/icons-material";
+import PopupPost from "./PopupPost";
 import PopupComment from "../comments/PopupComment";
+import EditPopupPost from "./EditPopupPost";
+import DeletePost from "./DeletePost.jsx";
 
-const Post = ({ postId, user, title, text, time, createdAt }) => {
-
-
+const PostUserPage = ({ post }) => {
+  // console.log(post)
   return (
-    <Card sx={{ minWidth: 345, maxWidth: 500 , marginBottom: "30px" }}>
+    <Card
+      sx={{ minWidth: 345, maxWidth: 500, height: 200, marginBottom: "20px" }}
+    >
       {/* <CardMedia
         sx={{ height: 140 }}
         image="/static/images/cards/contemplative-reptile.jpg"
@@ -27,17 +36,14 @@ const Post = ({ postId, user, title, text, time, createdAt }) => {
       /> */}
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {title}
+          {post.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {text}
+          {post.text}
         </Typography>
       </CardContent>
-      <CardHeader
-        avatar={<Avatar sx={{ bgcolor: "primary.main" }}></Avatar>}
-        title={user.username}
-        subheader={createdAt + " " + time + " " + "ago"}
-      ></CardHeader>
+      {/* card header, avatar, username */}
+      <CardHeader>posted: {post.createdAt}</CardHeader>
       <CardActions
         sx={{
           display: "flex",
@@ -46,19 +52,16 @@ const Post = ({ postId, user, title, text, time, createdAt }) => {
         }}
       >
         <Stack sx={{ display: "flex", flexDirection: "row" }}>
-          <Button size="small">
-            <ThumbUpAltOutlined />
-          </Button>
-          <PopupComment postId={postId} />
+          <PopupComment postId={post._id} />
         </Stack>
-    
-        {/* Check if user can edit post */}
-        {/* <Button size="small" type="button">
-          Edit
-        </Button> */}
+
+        <Stack sx={{ display: "flex", flexDirection: "row" }}>
+          <EditPopupPost post={post} />
+          <DeletePost postId={post._id}/>
+        </Stack>
       </CardActions>
     </Card>
   );
 };
 
-export default Post;
+export default PostUserPage;

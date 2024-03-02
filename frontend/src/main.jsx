@@ -24,6 +24,7 @@ import Welcome from "./views/Welcome.jsx";
 import SettingsPage from "./views/SettingsPage.jsx";
 import NewsPage from "./views/NewsPage.jsx";
 import InfoPage from "./views/InfoPage.jsx";
+import UserProfilePage from "./views/UserProfilePage.jsx";
 
 
 const router = createBrowserRouter(
@@ -33,7 +34,7 @@ const router = createBrowserRouter(
         <Route element={<Welcome />}>
           <Route element={<Prefetch />}>
             <Route index={true} element={<HomePage />} />
-            <Route path="/profile" element={<UpdateUserProfile />} />
+            <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/settings" element={<SettingsPage />}/>
             <Route path="/news" element={<NewsPage />}/>
             <Route path="/info" element={<InfoPage />}/>

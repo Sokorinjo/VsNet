@@ -1,7 +1,4 @@
 import React from "react";
-import Header from "../components/Header";
-import Button from "@mui/material/Button";
-
 import {
   Box,
   Container,
@@ -9,16 +6,17 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
-import { useGetAllUsersQuery } from "../features/users/usersApiSlice.js";
-import { useGetAllPostsQuery } from "../features/posts/postsApiSlice.js";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+// import { selectAllPosts, selectPostsById, selectPostsIds } from "../features/posts/postsApiSlice.js";
+import { useGetAllPostsQuery } from "../features/posts/postsApiSlice.js";
+//Components
 import Post from "../features/posts/Post.jsx";
 import PopupPost from "../features/posts/PopupPost";
+import ErrorPage from "./ErrorPage.jsx";
 
 const HomePage = () => {
   
-
   const {
     data: posts,
     isError: isPostsError,
@@ -31,13 +29,19 @@ const HomePage = () => {
     refetchOnMountOrArgChange: true,
   });
 
+  // const postsIds = useSelector(selectPostsIds)
+  // const postsById = useSelector(selectPostsById)
+  
+  
+  
   let content;
   if (isPostsLoading) {
     content = <LinearProgress />;
   } else if (isPostsError) {
     console.log(postsError);
   } else if (isPostsSuccess) {
-    content = posts.allPosts.map((post) => {
+    
+    content = posts.map((post) => {
       const startDate = new Date(`${post.createdAt}`);
       const endDate = new Date();
       let elapsedTimeMinutes = Math.floor((endDate.getTime() - startDate.getTime())/1000/60);

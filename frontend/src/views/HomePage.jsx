@@ -6,7 +6,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import bcrypt from "bcrypt"
+// import bcrypt from "bcrypt"
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 // import { selectAllPosts, selectPostsById, selectPostsIds } from "../features/posts/postsApiSlice.js";
@@ -19,7 +19,7 @@ import ErrorPage from "./ErrorPage.jsx";
 
 const HomePage = () => {
 
-  const user = useSelector((state) => state.auth.token)
+  const user = useSelector((state) => state.auth.currentId)
 
   useEffect(() => {
     console.log(user)
@@ -57,13 +57,13 @@ const HomePage = () => {
       let elapsedTimeDays = Math.floor((endDate.getTime() - startDate.getTime())/1000/60/60/24);
       if(elapsedTimeDays < 1 && elapsedTimeMinutes > 60) {
         
-        return <Post key={post._id} post={post} postId={post._id} user={post.user} title={post.title} text={post.text} time={'hr'} createdAt={elapsedTimeHours} />;
+        return <Post key={post._id} post={post} postId={post._id} userStateId={user} user={post.user} title={post.title} text={post.text} time={'hr'} createdAt={elapsedTimeHours} />;
       }else if(elapsedTimeHours < 1){
         
-        return <Post key={post._id} post={post} postId={post._id} user={post.user} title={post.title} text={post.text} time={'min'} createdAt={elapsedTimeMinutes} />;
+        return <Post key={post._id} post={post} postId={post._id} userStateId={user} user={post.user} title={post.title} text={post.text} time={'min'} createdAt={elapsedTimeMinutes} />;
       }else{
         
-        return <Post key={post._id} post={post} postId={post._id} user={post.user} title={post.title} text={post.text} time={'d'} createdAt={elapsedTimeDays} />;
+        return <Post key={post._id} post={post} postId={post._id} userStateId={user} user={post.user} title={post.title} text={post.text} time={'d'} createdAt={elapsedTimeDays} />;
       }
 
     });

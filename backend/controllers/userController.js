@@ -84,6 +84,7 @@ const loginUser = asyncHandler(async (req, res) => {
     //Add refresh token to database
     user.refToken = refreshToken;
     user.save();
+    const userId = user._id
 
     //Add refresh token to cookie
     res.cookie("jwt", refreshToken, {
@@ -92,7 +93,7 @@ const loginUser = asyncHandler(async (req, res) => {
       sameSite: "strict",
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.status(200).json({user, accessToken });
+    res.status(200).json({currentId: user._id, accessToken });
   } else {
     res.status(401);
     throw new Error("Wrong email or password");

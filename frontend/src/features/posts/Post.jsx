@@ -19,18 +19,36 @@ import LikePostButton from "./LikePostButton";
 import { useAddLikeToPostMutation } from "./postsApiSlice";
 import { toast } from "react-toastify";
 
-const Post = ({ post, postId, user, title, text, time, createdAt }) => {
-  const [like, setLike] = useState(false)
+const Post = ({ post, postId, userStateId, user, title, text, time, createdAt }) => {
+  const [like, setLike] = useState("Like")
   const [likePost, { isSuccess }] = useAddLikeToPostMutation();
+  
+  useEffect(() => {
+    post.likes.map((value, index) => {
+      if(value === userStateId){
+        setLike("Dislike")
+      }else{
+        setLike("Like")
+      }
+    })
+  }, [])
+  
 
   const handleLike = async () => {
     try {
       await likePost({ postId, userId: user._id }).unwrap();
-      
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
+    // post.likes.map((value, index) => {
+    //   if(value === userStateId){
+    //     setLike('Dislike')
+    //   }else{
+    //     setLike('Like')
+    //   }
+    // })
   };
+
 
   return (
     <Card sx={{ minWidth: 345, maxWidth: 500 , marginBottom: "30px" }}>
@@ -62,7 +80,8 @@ const Post = ({ post, postId, user, title, text, time, createdAt }) => {
         <Stack sx={{ display: "flex", flexDirection: "row" }}>
           <Button size="small" onClick={handleLike}>
             {/* <LikePostButton post={post} postId={postId} userId={user._id}/> */}
-            {like ? <ThumbUp /> : <ThumbUpOutlined />}
+            {/* {like ? <ThumbUp /> : <ThumbUpOutlined />} */}
+            {like}
           </Button>
           <PopupComment postId={postId} />
         </Stack>

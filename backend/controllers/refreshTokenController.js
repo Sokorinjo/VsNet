@@ -42,7 +42,7 @@ const handleRefreshToken = asyncHandler(async (req, res, next) => {
     { expiresIn: "5m" }
   );
 
-  res.json({accessToken})
+  res.json({currentId: user._id, accessToken})
   
 });
 

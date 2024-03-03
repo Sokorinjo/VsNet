@@ -182,7 +182,7 @@ const DrawerOC = ({ handleDarkTheme, themeProp }) => {
         <DrawerHeaderHeader></DrawerHeaderHeader>
         {/* <DrawerHeaderHeader>dsadad</DrawerHeaderHeader> */}
         <Divider />
-        <List>ddadasd</List>
+        {/* <List></List> */}
         <Divider />
         {token ? (
           <List>

@@ -24,7 +24,6 @@ app.get("/", (req, res) => {
   res.json({ message: "HOME PAGE" });
 });
 
-
 app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/comments", commentRouter);

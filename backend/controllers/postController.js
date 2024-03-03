@@ -49,7 +49,7 @@ const updatePost = asyncHandler(async(req, res) => {
 //@desc Delete post
 //@route DELETE /api/posts
 //@access Private
-const deletePost = asyncHandler(async (req, res) => {
+const deletePost = asyncHandler(async (req, res) => {0
   const user = req.user._id
   const {id} = req.body
 
@@ -57,10 +57,35 @@ const deletePost = asyncHandler(async (req, res) => {
   res.send({message: `Post: ${id} deleted.`})
 })
 
+//@desc Add like to a post
+//@route PATCH /api/posts/add-like
+//@access Private
+const addLikeToPost = asyncHandler(async(req, res) => {
+  const user = req.user._id
+  const {postId} = req.body
+
+
+  const updatedPost = await Post.findById({_id: postId})
+  if(!updatedPost.likes.includes(user)){
+    updatedPost.likes.push(user)
+    console.log("LIKED :)")
+    updatedPost.save()
+  }else{
+    console.log("UNLIKED :(")
+    const selectUser = updatedPost.likes.pull(user)
+    updatedPost.save()
+  }
+
+
+  console.log(updatedPost)
+  res.send({message: "Liked Post"})
+})
+
 export const postController = {
   getAllPosts,
   getPostsForUser,
   addNewPost,
   updatePost,
-  deletePost
+  deletePost,
+  addLikeToPost
 } 

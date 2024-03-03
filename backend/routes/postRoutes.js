@@ -8,6 +8,7 @@ router
   .get('/user-posts', protect, postController.getPostsForUser)
   .post('/',protect, postController.addNewPost)
   .patch('/',protect, postController.updatePost)
+  .patch('/add-like', protect, postController.addLikeToPost)
   .delete('/',protect, postController.deletePost)
 
 export {router}

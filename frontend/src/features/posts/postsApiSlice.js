@@ -92,6 +92,17 @@ export const postsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: (result, error, arg) => [{ type: "Post", id: arg.id }],
     }),
+
+    addLikeToPost: builder.mutation({
+      query: (data) => ({
+        url: "/api/posts/add-like",
+        method: "PATCH", 
+        body: {
+          ...data
+        }
+      }),
+      invalidatesTags: (result, error, arg) => [{type: 'Post', id: arg.postId}]
+    })
   }),
 });
 
@@ -101,6 +112,7 @@ export const {
   useUpdatePostMutation,
   useDeletePostMutation,
   useGetPostsForUserQuery,
+  useAddLikeToPostMutation
 } = postsApiSlice;
 
 // export const selectPostsResult = postsApiSlice.endpoints.getAllPosts.select()

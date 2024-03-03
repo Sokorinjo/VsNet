@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { ThumbUpOutlined, ThumbUpAltOutlined } from "@mui/icons-material";
+import { useState, useEffect } from "react";
+import { ThumbUpOutlined, ThumbUp } from "@mui/icons-material";
 import {
   Card,
   CardActions,
@@ -14,9 +15,22 @@ import {
 } from "@mui/material";
 import { ChatBubbleOutline, ExpandOutlined } from "@mui/icons-material";
 import PopupComment from "../comments/PopupComment";
+import LikePostButton from "./LikePostButton";
+import { useAddLikeToPostMutation } from "./postsApiSlice";
+import { toast } from "react-toastify";
 
-const Post = ({ postId, user, title, text, time, createdAt }) => {
+const Post = ({ post, postId, user, title, text, time, createdAt }) => {
+  const [like, setLike] = useState(false)
+  const [likePost, { isSuccess }] = useAddLikeToPostMutation();
 
+  const handleLike = async () => {
+    try {
+      await likePost({ postId, userId: user._id }).unwrap();
+      
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+  };
 
   return (
     <Card sx={{ minWidth: 345, maxWidth: 500 , marginBottom: "30px" }}>
@@ -46,8 +60,9 @@ const Post = ({ postId, user, title, text, time, createdAt }) => {
         }}
       >
         <Stack sx={{ display: "flex", flexDirection: "row" }}>
-          <Button size="small">
-            <ThumbUpAltOutlined />
+          <Button size="small" onClick={handleLike}>
+            {/* <LikePostButton post={post} postId={postId} userId={user._id}/> */}
+            {like ? <ThumbUp /> : <ThumbUpOutlined />}
           </Button>
           <PopupComment postId={postId} />
         </Stack>

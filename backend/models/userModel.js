@@ -26,6 +26,7 @@ const userSchema = new mongoose.Schema(
     refToken: {
       type: String,
     },
+    likedPosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
   },
   {
     timestamps: true,

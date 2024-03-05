@@ -35,6 +35,7 @@ const router = createBrowserRouter(
           <Route element={<Prefetch />}>
             <Route index={true} element={<HomePage />} />
             <Route path="/profile" element={<UserProfilePage />} />
+            <Route path="/edit-profile" element={<UpdateUserProfile />} />
             <Route path="/settings" element={<SettingsPage />}/>
             <Route path="/news" element={<NewsPage />}/>
             <Route path="/info" element={<InfoPage />}/>

@@ -69,16 +69,16 @@ const addLikeToPost = asyncHandler(async(req, res) => {
   if(!updatedPost.likes.includes(user)){
     updatedPost.likes.push(user)
     console.log("LIKED :)")
-    updatedPost.save()
+    await updatedPost.save()
+    console.log(updatedPost)
+    res.send({message:"Liked"})
   }else{
+    const selectUser = await updatedPost.likes.pull(user)
     console.log("UNLIKED :(")
-    const selectUser = updatedPost.likes.pull(user)
-    updatedPost.save()
+    await updatedPost.save()
+    console.log(updatedPost)
+    res.send({message: "Disliked"})
   }
-
-
-  console.log(updatedPost)
-  res.send({message: "Liked Post"})
 })
 
 export const postController = {

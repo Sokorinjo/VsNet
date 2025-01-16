@@ -2,7 +2,9 @@ import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
 import { Aggregate } from "mongoose";
 
-// const postsAdapter = createEntityAdapter({});
+// const postsAdapter = createEntityAdapter({
+//   sortComparer:(a, b) => (a.createdAt )
+// });
 // const initialState = postsAdapter.getInitialState();
 
 export const postsApiSlice = apiSlice.injectEndpoints({

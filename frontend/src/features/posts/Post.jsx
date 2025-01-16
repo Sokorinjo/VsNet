@@ -71,11 +71,11 @@ const Post = ({
         }}
       >
         <Stack sx={{ display: "flex", flexDirection: "row" }}>
-          <Button size="small" onClick={handleLike}>
+          {/* <Button size="small" onClick={handleLike}> */}
             {/* <LikePostButton post={post} postId={postId} userId={user._id}/> */}
             {/* {like ? <ThumbUp /> : <ThumbUpOutlined />} */}
-            {like ? "Dislike" : "Like"}
-          </Button>
+            {/* {like ? "Dislike" : "Like"} */}
+          {/* </Button> */}
           <PopupComment postId={postId} />
         </Stack>
 

@@ -7,12 +7,14 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Delete } from "@mui/icons-material";
 import { useDeletePostMutation } from "./postsApiSlice";
+import { useDeletePostCommentsMutation } from "../comments/commentsApiSlice";
 import { toast } from "react-toastify";
 
 const DeletePost = ({postId}) => {
   const [open, setOpen] = React.useState(false);
 
-  const [deletePost, {isSuccess}] = useDeletePostMutation()
+  const [deletePost, {isSuccess: postDeleted}] = useDeletePostMutation()
+  const [deletePostComments, {isSuccess: commentsDeleted}] = useDeletePostCommentsMutation()
 
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -21,6 +23,7 @@ const DeletePost = ({postId}) => {
     setOpen(false)
     try{
       await deletePost({id: postId})
+      await deletePostComments({postId})
       toast.success("Post successfully deleted!")
     }catch(err){
       toast.error(err?.data?.message || err.error)

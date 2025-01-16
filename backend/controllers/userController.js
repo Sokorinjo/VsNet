@@ -93,7 +93,7 @@ const loginUser = asyncHandler(async (req, res) => {
       sameSite: "strict",
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.status(200).json({currentId: user._id, accessToken });
+    res.status(200).json({currentId: user._id, accessToken, username: user.username });
   } else {
     res.status(401);
     throw new Error("Wrong email or password");
@@ -158,8 +158,13 @@ const getUserProfile = asyncHandler(async (req, res) => {
 //@route PATCH /api/users/profile
 //@access Private
 const updateUserProfile = asyncHandler(async (req, res) => {
-  // const {name, lastname, username, email, }
-
+  const {name, lastname, username, email} = req.body
+  const {_id: userId} = req.user._id
+  console.log(userId)
+  // console.log(req.body)
+  const updatedUser = await User.findOneAndUpdate({_id: req.user._id}, {name, lastname, username, email}, {new: true})
+  console.log(updatedUser)
+  
   res.send({user:"user"})
   // res.json(req.user._id);
 });

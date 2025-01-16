@@ -20,8 +20,17 @@ export const commentsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Comment']
     }),
+    deletePostComments: builder.mutation({
+      query:(data) => ({
+        url: "/api/comments",
+        method: "DELETE",
+        body: {
+          ...data
+        }
+      })
+    })
   }),
 });
 
-export const { useGetPostCommentsQuery, useAddPostCommentMutation } =
+export const { useGetPostCommentsQuery, useAddPostCommentMutation, useDeletePostCommentsMutation } =
   commentsApiSlice;

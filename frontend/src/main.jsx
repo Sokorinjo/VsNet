@@ -25,6 +25,8 @@ import SettingsPage from "./views/SettingsPage.jsx";
 import NewsPage from "./views/NewsPage.jsx";
 import InfoPage from "./views/InfoPage.jsx";
 import UserProfilePage from "./views/UserProfilePage.jsx";
+import Chat from "./views/Chat.jsx";
+import { usersApiSlice } from "./features/users/usersApiSlice.js";
 
 
 const router = createBrowserRouter(
@@ -40,6 +42,7 @@ const router = createBrowserRouter(
             <Route path="/news" element={<NewsPage />}/>
             <Route path="/info" element={<InfoPage />}/>
             <Route path="/comments/:postId" element={<InfoPage />}/>
+            <Route path="/chat" element={<Chat />}/>
             
           </Route>
           {/* <Route path="" element={<ProtectRoute />}> */}
@@ -51,6 +54,8 @@ const router = createBrowserRouter(
     </Route>
   )
 );
+
+// store.dispatch(usersApiSlice.endpoints.getAllUsers.initiate())
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

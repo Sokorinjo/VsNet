@@ -30,6 +30,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import InfoIcon from "@mui/icons-material/Info";
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 
 //components, react, redux...
 import * as React from "react";
@@ -192,6 +193,14 @@ const DrawerOC = ({ handleDarkTheme, themeProp }) => {
                   <Avatar />
                 </ListItemIcon>
                 <ListItemText primary={"View Profile"}></ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton component={Link} to="/chat">
+                <ListItemIcon sx={{ paddingLeft: "5px"}}>
+                  <ForumRoundedIcon sx={{fontSize: "30px",}}/>
+                </ListItemIcon>
+                <ListItemText primary={"Chat"}></ListItemText>
               </ListItemButton>
             </ListItem>
           </List>

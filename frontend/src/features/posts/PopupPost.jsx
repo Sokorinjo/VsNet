@@ -28,7 +28,7 @@ const PopupPost = () => {
   };
 
   return (
-    <div>
+    <div style={{marginBottom: "20px"}}>
       <Button variant="outlined" onClick={handleClickOpen} >
         <AddIcon /> New Post
       </Button>

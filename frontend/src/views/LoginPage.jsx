@@ -43,11 +43,11 @@ const LoginPage = () => {
       toast.error("Please input all fields.");
     } else {
       try {
-        const { user, accessToken } = await loginUser({
+        const { currentId, accessToken, username } = await loginUser({
           email,
           password,
         }).unwrap();
-        dispatch(setCredentials({ user, accessToken }));
+        dispatch(setCredentials({ username, accessToken, currentId }));
         // setEmail('')
         // setPassword('')
         navigate("/");

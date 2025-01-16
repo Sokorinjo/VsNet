@@ -50,10 +50,18 @@ const editPostComment = asyncHandler(async (req, res) => {
   res.send({ message: `Comment added to post: ${postId}`, postComment });
 });
 
+const deletePostComments = asyncHandler(async (req, res) => {
+  const postId = req.body.postId
+  console.log(req.body)
+  const deletedPostComments = await Comment.deleteMany({ postId });
+  console.log(deletedPostComments);
+  res.send({ message: `Comments deleted for post: ${postId}`});
 
+})
 
 
 export const commentController = {
   getAllPostComments,
   addPostComment,
+  deletePostComments
 };

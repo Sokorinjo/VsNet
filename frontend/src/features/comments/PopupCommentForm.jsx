@@ -83,11 +83,11 @@ const PopupCommentForm = ({ handleClose, postId }) => {
         {/* <MultiLineTextField handleText={handleText}/> */}
         <TextField
           id="outlined-multiline-static"
-          label="Post text"
+          label="Comment"
           multiline
           minRows={6}
           // defaultValue="Default Value"
-          placeholder="What's on your mind?"
+          placeholder="Write something for this post."
           value={commentText}
           onChange={handleCommentText}
           sx={{ width: "100%" }}

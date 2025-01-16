@@ -13,13 +13,11 @@ import {
 } from "@mui/material";
 import { Person } from "@mui/icons-material";
 // import {useUpdateUserMutation, useGetUserProfileQuery} from '../features/users/usersApiSlice.js'
-import { useGetUserProfileQuery } from "../features/users/usersApiSlice.js";
+import { useGetUserProfileQuery, useUpdateUserMutation } from "../features/users/usersApiSlice.js";
 
 const UpdateUserProfile = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPass, setConfirmPass] = useState("");
   const [fullName, setFullName] = useState({
     name: "",
     lastname: "",
@@ -33,6 +31,7 @@ const UpdateUserProfile = () => {
     pollingInterval: 60000,
 
   })
+  const [updateUser, {}] = useUpdateUserMutation()
 
   console.log(userData)
   let user;
@@ -56,19 +55,6 @@ const UpdateUserProfile = () => {
   // const [updateUser, { isSucces, isLoading, isError, error }] =
   //   useUpdateUserMutation();
 
-
-  const handleOldPassword = (e) => {
-
-  }
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPassword = (e) => {
-    setConfirmPass(e.target.value);
-  };
-
   const handleFullName = (e) => {
     console.log(e.target.value);
     setFullName((fullName) => ({
@@ -81,8 +67,8 @@ const UpdateUserProfile = () => {
     e.preventDefault();
     try{
       const {name, lastname} = fullName
-      // const user = await updateUser({name, lastname, username, email}).unwrap()
-      const user = await updateUser({name: "Vlada", lastname: "Sokorac", username:"vlada", email: "vlada@gmail.com", password: 'dasdadasd'}).unwrap()
+      const user = await updateUser({name, lastname, username, email}).unwrap()
+      // const user = await updateUser({name: "Vlada", lastname: "Sokorac", username:"vlada", email: "vlada@gmail.com", password: 'dasdadasd'}).unwrap()
       console.log(user)
     }catch(err){
       console.log(err)
@@ -139,10 +125,10 @@ const UpdateUserProfile = () => {
           color="accent"
           value={email}
         ></TextField>
-
+{/* 
         <Password passwordFunc={handlePassword} id={"Old Password"} />
         <Password passwordFunc={handlePassword} id={"New Password"} />
-        <Password passwordFunc={handleConfirmPassword} id={"Confirm New Password"} />
+        <Password passwordFunc={handleConfirmPassword} id={"Confirm New Password"} /> */}
         
         <Button
           variant="contained"

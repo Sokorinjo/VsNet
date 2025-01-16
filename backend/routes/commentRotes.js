@@ -7,5 +7,6 @@ router
   // .get('/', protect)
   .get('/:postId', protect, commentController.getAllPostComments)
   .post('/', protect, commentController.addPostComment)
+  .delete('/', protect, commentController.deletePostComments)
 
 export {router}

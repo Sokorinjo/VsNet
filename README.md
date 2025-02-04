@@ -20,5 +20,5 @@ Fullstack web app built with MERN stack that allows users to post, comment and c
 1. From the project folder run: `npm install`
 2. Go to the frontend folder and run the same command: `cd frontend; npm run install`
 
-**4. Run the application**
+**4. Run the application**<br>
 Open terminal and run: `npm run dev`
